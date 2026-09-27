@@ -1,0 +1,13 @@
+# Optional profile for running without PostgreSQL:
+#   mvn spring-boot:run -Dspring-boot.run.profiles=local
+# Uses H2 in PostgreSQL compatibility mode; the production default uses real PostgreSQL.
+spring:
+  datasource:
+    url: jdbc:h2:mem:cycleworkbench;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;NON_KEYWORDS=HOUR,MINUTE;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:db/schema-h2.sql

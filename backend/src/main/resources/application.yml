@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: cycle-workbench
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/cycleworkbench}
+    username: ${DB_USERNAME:cycle}
+    password: ${DB_PASSWORD:cycle}
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:db/schema.sql
+  quartz:
+    job-store-type: memory
+    properties:
+      org.quartz.scheduler.instanceName: CycleWorkbenchScheduler
+      org.quartz.threadPool.threadCount: 3
+
+server:
+  port: ${SERVER_PORT:8080}
+
+logging:
+  level:
+    org.quartz: INFO
